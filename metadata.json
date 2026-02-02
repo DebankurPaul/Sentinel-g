@@ -1,0 +1,9 @@
+{
+  "name": "Sentinel-G",
+  "description": "A multimodal crisis command center for disaster management using Gemini 3. Fuses satellite data with ground reports to establish ground truth and optimize logistics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
