@@ -1128,7 +1128,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Floating Action Button */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+                    <div className="absolute bottom-36 left-1/2 -translate-x-1/2 z-20">
                         <button
                             onClick={() => setIsCameraOpen(true)}
                             className="flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white pl-4 pr-6 py-3 rounded-full font-bold shadow-2xl shadow-red-900/80 transition-all hover:scale-105 active:scale-95 border-4 border-slate-900/50 backdrop-blur">
