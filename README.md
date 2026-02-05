@@ -9,7 +9,7 @@ Sentinel-G is a multimodal crisis command center designed for the Northeast Indi
 
 ### 🧠 Advanced AI Analysis
 - **Multimodal Understanding**: Analyzes both **Images** and **Audio** to detect hazards.
-- **Gemini 2.5 Flash**: Rapidly identifies disaster type, severity, and estimates impact radius.
+- **Gemini 3 Flash**: Rapidly identifies disaster type, severity, and estimates impact radius.
 - **Predictive Impact**: Visualizes the estimated spread of hazards (e.g., flood zones) on the map.
 
 ### 🛡️ Resilience & Safety
