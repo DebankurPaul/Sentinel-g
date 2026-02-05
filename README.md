@@ -70,7 +70,7 @@ Control the dashboard using voice commands:
 - **Frontend**: React (Vite), TypeScript
 - **Styling**: Tailwind CSS
 - **Maps**: Leaflet, `leaflet.heat`
-- **AI**: Google Gemini API (`gemini-2.5-flash`)
+- **AI**: Google Gemini API (`gemini-3-flash`)
 - **Routing**: OSRM (Open Source Routing Machine)
 - **Data**: Open-Meteo, OpenStreetMap (Overpass API)
 - **PWA**: `vite-plugin-pwa`, Workbox
