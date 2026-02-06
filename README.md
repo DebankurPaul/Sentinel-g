@@ -9,13 +9,12 @@ Sentinel-G is a multimodal crisis command center designed for the Northeast Indi
 
 ### 🧠 Advanced AI Analysis
 - **Multimodal Understanding**: Analyzes both **Images** and **Audio** to detect hazards.
-- **Gemini 2.5 Flash**: Rapidly identifies disaster type, severity, and estimates impact radius.
-- **Predictive Impact**: Visualizes the estimated spread of hazards (e.g., flood zones) on the map.
+- **Gemini 3.0 Flash/Pro**: Rapidly identifies disaster type, severity, and estimates impact radius with enhanced reasoning.
 
 ### 🛡️ Resilience & Safety
 - **SOS Beacon**: A prominent panic button that instantly shares your **GPS Location** and **Battery Level** via WhatsApp/SMS.
 - **Offline-First (PWA)**: Works in low-connectivity zones. Caches the app shell to ensure the UI is always accessible.
-- **Crowd-Sourced Verification**: Community voting system (👍 Confirm / 👎 Dismiss) to filter out false alarms.
+- **Crowd-Sourced Verification**: Community voting system (👍 Confirm / 👎 Dismiss) to filter out false alarms (Now using `selectedAlertId` for real-time sync).
 
 ### 🗺️ Dynamic Mapping & Navigation
 - **Live Heatmaps**: Visualizes "Hot Zones" of high incident density using `leaflet.heat`.
@@ -70,7 +69,7 @@ Control the dashboard using voice commands:
 - **Frontend**: React (Vite), TypeScript
 - **Styling**: Tailwind CSS
 - **Maps**: Leaflet, `leaflet.heat`
-- **AI**: Google Gemini API (`gemini-2.5-flash`)
+- **AI**: Google Gemini API (`gemini-3.0-flash`, `gemini-3.0-pro`)
 - **Routing**: OSRM (Open Source Routing Machine)
 - **Data**: Open-Meteo, OpenStreetMap (Overpass API)
 - **PWA**: `vite-plugin-pwa`, Workbox

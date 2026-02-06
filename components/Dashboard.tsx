@@ -560,7 +560,11 @@ const Dashboard = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [processingStep, setProcessingStep] = useState("");
     const [alerts, setAlerts] = useState<Alert[]>([]);
-    const [selectedAlert, setSelectedAlert] = useState<Alert | null>(null);
+    const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
+
+    // Derive selected alert from alerts array to ensure sync
+    const selectedAlert = useMemo(() => alerts.find(a => a.id === selectedAlertId) || null, [alerts, selectedAlertId]);
+
     const [timeFilter, setTimeFilter] = useState(24); // Hours (0-24)
 
     const mapRef = useRef<HTMLDivElement>(null);
@@ -712,7 +716,7 @@ const Dashboard = () => {
             }).addTo(leafletMap.current!);
 
             marker.on('click', () => {
-                setSelectedAlert(alert);
+                setSelectedAlertId(alert.id);
                 leafletMap.current?.setView([alert.location.lat, alert.location.lng], 16);
             });
 
@@ -798,7 +802,6 @@ const Dashboard = () => {
         const updatedAlert = { ...selectedAlert, status: 'verified' as const, reportCount: selectedAlert.reportCount + 1 };
 
         setAlerts(prev => prev.map(a => a.id === selectedAlert.id ? updatedAlert : a));
-        setSelectedAlert(updatedAlert);
 
         // Trigger generic evacuation route if not already present
         if (!updatedAlert.safeZone) {
@@ -823,7 +826,7 @@ const Dashboard = () => {
             // Select the first critical/high alert with a safe zone
             const criticalAlert = alerts.find(a => (a.severity === 'critical' || a.severity === 'high') && a.safeZone);
             if (criticalAlert) {
-                setSelectedAlert(criticalAlert);
+                setSelectedAlertId(criticalAlert.id);
                 if (leafletMap.current) leafletMap.current.setView([criticalAlert.location.lat, criticalAlert.location.lng], 16);
             }
         }
@@ -948,7 +951,7 @@ const Dashboard = () => {
             };
 
             setAlerts(prev => [newAlert, ...prev]);
-            setSelectedAlert(newAlert);
+            setSelectedAlertId(newAlert.id);
 
         } catch (error: any) {
             console.error("Gemini Error:", error);
@@ -974,7 +977,7 @@ const Dashboard = () => {
                 };
 
                 setAlerts(prev => [fallbackAlert, ...prev]);
-                setSelectedAlert(fallbackAlert);
+                setSelectedAlertId(fallbackAlert.id);
             } else {
                 alert(`Failed to analyze. Error: ${error.message || error}`);
             }
@@ -1100,7 +1103,7 @@ const Dashboard = () => {
                                 filteredAlerts.map(alert => (
                                     <div key={alert.id} className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/50 flex gap-3 hover:bg-slate-700 transition-colors cursor-pointer active:scale-[0.98]"
                                         onClick={() => {
-                                            setSelectedAlert(alert);
+                                            setSelectedAlertId(alert.id);
                                             if (leafletMap.current) leafletMap.current.setView([alert.location.lat, alert.location.lng], 15);
                                         }}>
                                         <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${alert.severity === 'critical' ? 'bg-red-500/20 text-red-500' :
@@ -1172,7 +1175,7 @@ const Dashboard = () => {
                 <AlertDetails
                     alert={selectedAlert}
                     onClose={() => {
-                        setSelectedAlert(null);
+                        setSelectedAlertId(null);
                         // Reset map view slightly if needed
                     }}
                     onVerify={handleVerify}

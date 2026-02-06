@@ -2,9 +2,9 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { Report, SatelliteZone, IncidentType, LogisticsPlan, UITheme } from '../types';
 
 // NOTE: Using specific models as per instructions
-const MODEL_VISION = 'gemini-3-pro-preview'; // Upgraded for complex reasoning
-const MODEL_REASONING = 'gemini-3-pro-preview';
-const MODEL_FAST = 'gemini-3-flash-preview';
+const MODEL_VISION = 'gemini-3.0-pro'; // Upgraded for complex reasoning
+const MODEL_REASONING = 'gemini-3.0-pro';
+const MODEL_FAST = 'gemini-3.0-flash';
 
 let genAI: GoogleGenAI | null = null;
 
